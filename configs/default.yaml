@@ -1,0 +1,23 @@
+# Every rule below was fixed before results were examined.
+out_dir: reports
+prices: data/raw_px/prices.parquet
+calendar: data/raw_pead/stock_earning_calendar.parquet
+eps: data/raw_pead/stock_tailing_eps.parquet
+shares: data/raw_pead/stock_shares_outstanding.parquet
+benchmark: SPY
+start: "2023-01-01"           # announcement calendar begins Jan 2023
+min_price: 5.0                # price at day -2
+min_dollar_volume: 1000000    # median daily $ volume over days -21..-2
+sue_min_history: 4            # seasonal EPS changes needed to scale SUE (up to 8 used)
+reaction_window: [-1, 1]      # earnings announcement return (EAR), trading days
+hold_start: 2                 # enter at close of day +1: first drift day is +2
+hold_days: 60                 # drift window +2..+61
+breakpoint_lookback_days: 91  # quintile breakpoints from announcements in the prior 91 calendar days only
+size_groups: [300000000, 2000000000, 10000000000]  # micro < $300M <= small < $2B <= mid < $10B <= large
+cost_bps_one_way: [10, 25, 50]  # by size group large/mid, small, micro (illustrative)
+book_usd: 100000000           # illustrative long-short book for the dollar translation
+sources:
+  prices.parquet: {url: https://huggingface.co/datasets/defeatbeta/yahoo-finance-data/resolve/main/data/US/stock_prices.parquet, sha256: 903dbb965979f8b92a60b01524372f42be0e4bf88c291caf87171a286149be32}
+  stock_earning_calendar.parquet: {url: https://huggingface.co/datasets/defeatbeta/yahoo-finance-data/resolve/main/data/US/stock_earning_calendar.parquet, sha256: 530d326d003ad656948436d98069a7ee72aebf0ba88ae5b712e0cae12051980b}
+  stock_tailing_eps.parquet: {url: https://huggingface.co/datasets/defeatbeta/yahoo-finance-data/resolve/main/data/US/stock_tailing_eps.parquet, sha256: 5ba9f33389e1b93137c3cb25f4d98f314791d5a0dd51f836a5337723bc4f6776}
+  stock_shares_outstanding.parquet: {url: https://huggingface.co/datasets/defeatbeta/yahoo-finance-data/resolve/main/data/US/stock_shares_outstanding.parquet, sha256: cc7b82737551a5f6adf04a1c0ac5560bb2ad763cec58410f56f650de14561fd1}
