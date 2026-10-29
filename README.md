@@ -60,7 +60,7 @@ Methods referenced
 - Chan, L., Jegadeesh, N. and Lakonishok, J. (1996). "Momentum Strategies." *The Journal of Finance* 51(5), 1681–1713.
 - Martineau, C. (2022). "Rest in Peace Post-Earnings Announcement Drift." *Critical Finance Review*. [doi.org/10.1561/104.00000122](https://doi.org/10.1561/104.00000122)
 
-All code, charts and text are the author's own.
+Code, analysis, charts and text were produced with AI assistance (Claude, by Anthropic) and reviewed by Gaurav Gupta.
 
 ## Run it
 
